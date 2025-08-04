@@ -1,0 +1,15 @@
+#Server configuration settings
+[server]
+	#Whether items can be disenchanted. More vanilla like would be false
+	allowDisenchantingItems = true
+	#Whether incompatible enchantments can be allied together
+	allowMixtureEnchantments = false
+	#Define the max level for applying enchantments. Format is ["enchantment_id|max_level","enchantment_id|max_level"]
+	maxEnchantmentLevels = []
+	#Whether curses can be removed from items
+	#Only relevant when `allowDisenchantingItems` is enabled
+	allowDisenchantingCurses = false
+	#List of enchantments that can not be removed from items
+	#Only relevant when `allowDisenchantingItems` is enabled
+	#This overrides `allowDisenchantingCurses`
+	disallowedDisenchantingEnchantments = []
