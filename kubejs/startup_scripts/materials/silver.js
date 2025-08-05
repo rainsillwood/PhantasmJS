@@ -1,4 +1,4 @@
-// priority: 2147483646
+// priority: 2147483645
 
 let material = 'silver';
 //地物形态
@@ -175,6 +175,7 @@ global.materials.push({
     'value': 0, //货币价值
     'fuel': 0, //燃烧时间,基准为锭
     'bacon': true, //是否用于信标
+    'trim': true, //是否用于锻造
     'tool': {
       'stiffness': 0, //刚度,影响弓壁拉弓速度,
       'strength': 0, //强度,影响耐久
