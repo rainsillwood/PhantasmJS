@@ -2,6 +2,8 @@
 
 global.lang = {
   'ZhCn': {
-    'materialIron': '铁',
+    'iron': '铁',
+    'silver': '银',
+    'ingot': '锭',
   },
 };
