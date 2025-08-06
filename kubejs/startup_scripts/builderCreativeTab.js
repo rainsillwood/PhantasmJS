@@ -1,12 +1,24 @@
 // priority: 10
 
+let listCreativeTab = [
+  {
+    'id': 'part',
+    'icon': 'minecraft:glowstone_dust',
+  },
+  {
+    'id': 'intermediate',
+    'icon': 'minecraft:raw_iron',
+  },
+];
+for (let optionTab of listCreativeTab) {
+  StartupEvents.registry('creative_mode_tab', (event) => {
+    let tabId = optionTab.id;
+    let tab = event.create(`minecraft:${tabId}s`);
+    tab.icon(() => optionTab.icon);
+    tab.displayName = global.lang[global.displayLanguage].creativeTab[tabId];
+  });
+}
 /*
-StartupEvents.registry('creative_mode_tab', (event) => {
-  event
-    .create('dirt')
-    .icon(() => 'minecraft:dirt')
-    .content(() => ['minecraft:dirt', 'minecraft:grass_block', 'minecraft:podzol', 'minecraft:coarse_dirt', 'minecraft:rooted_dirt']);
-});
 StartupEvents.modifyCreativeTab('minecraft:functional_blocks', (event) => {
   // Change tab icon
   event.icon = 'kubejs:example_block';
@@ -18,6 +30,17 @@ StartupEvents.modifyCreativeTab('kubejs:tab', (event) => {
   for (let item of global.listCreativeTabRemove) {
     event.remove(item);
   }
+});
+StartupEvents.modifyCreativeTab('minecraft:ingredients', (event) => {
+  let listRemove = [
+    'minecraft:raw_iron',
+    'minecraft:raw_copper',
+    'minecraft:raw_gold', //
+  ];
+  for (let item of listRemove) {
+    event.remove(item);
+  }
+  tab.displayName = global.lang[global.displayLanguage]['process'];
 });
 for (let CreativeTab in global.listCreativeTab) {
   StartupEvents.modifyCreativeTab(CreativeTab, (event) => {

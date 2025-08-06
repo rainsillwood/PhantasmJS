@@ -7,7 +7,9 @@ global.displayLanguage = 'zh_cn';
 //初始化语言文件
 global.lang = {};
 //初始化材料列表
-global.materials = [];
+global.listRarity = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC'];
+//初始化材料列表
+global.listMaterial = [];
 //初始化物品注册队列
 global.listItem = [];
 //初始化方块注册队列

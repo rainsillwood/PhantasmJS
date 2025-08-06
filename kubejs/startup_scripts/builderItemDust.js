@@ -1,32 +1,15 @@
 // priority: 1000
 
-let part;
+let part = 'dust';
 let rarity = 0;
 for (let material of global.listMaterial) {
-  part = 'ingot';
   if (material[part].build === true) {
     let itemSetting = {
       'id': `minecraft:${material.id}_${part}`,
       'type': 'basic',
       'displayName': `${global.lang[global.displayLanguage][part].replace('${material}', global.lang[global.displayLanguage][material.id])}`,
+      'rarity': global.RarityList[Math.max(material.rarity + rarity, 3)],
     };
-    switch (material.type) {
-      case 'metal': {
-        part = 'ingot';
-        break;
-      }
-      case 'alloy': {
-        part = 'ingot';
-        break;
-      }
-      case 'gem': {
-        part = 'gem';
-        break;
-      }
-    }
-    //宝石特例无后缀
-    if (part == 'gem') itemSetting.id = `${global.namespace}:${material.id}`;
-    itemSetting.rarity = global.RarityList[Math.max(material.rarity + rarity, 3)];
     if (material.enchanted === true) itemSetting.glow = true;
     if (material.usage.fuel > 0) itemSetting.burnTime = material.usage.fuel;
     global.listItem.push(itemSetting);

@@ -9,6 +9,7 @@ StartupEvents.registry('item', (event) => {
       builderItem = event.create(item.id, item.type);
     }
     builderItem.displayName(item.displayName);
+    builderItem.rarity(item.rarity);
     if (item.maxDamage > 0) builderItem.maxDamage(item.maxDamage); //设置物品的最大耐久
     if (item.maxStackSize > 0) builderItem.maxStackSize(item.maxStackSize); //设置物品的最大堆叠
     if (item.fireResistant === true) builderItem.fireResistant(item.fireResistant); //设置物品是否防火

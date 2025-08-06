@@ -149,28 +149,31 @@ let Placement = {
   //'lower': {},
   //'buried': {},
 };
-global.materials.push({
+global.listMaterial.push({
   'id': material, //id
   'name': global.lang[global.displayLanguage][material],
   'type': 'metal', //类型
   'color': 0x66ccff, //颜色
   'rarity': 0, //稀有度
   'enchanted': false, //是否附魔
-  'product': [
-    //产物
-    {
-      'material': 'silver',
-      'chance': 1,
-    },
-    {
-      'material': '',
-      'chance': 0,
-    },
-    {
-      'material': '',
-      'chance': 0,
-    },
-  ],
+  'process': {
+    'type': 'acid',
+    'product': [
+      //产物
+      {
+        'material': 'silver',
+        'chance': 1,
+      },
+      {
+        'material': '',
+        'chance': 0,
+      },
+      {
+        'material': '',
+        'chance': 0,
+      },
+    ],
+  },
   'usage': {
     'value': 0, //货币价值
     'fuel': 0, //燃烧时间,基准为锭
