@@ -1,5 +1,4 @@
-// priority: 2147483645
-
+// priority: 2147483644
 let material = 'silver';
 //地物形态
 let Config = {
@@ -151,7 +150,6 @@ let Placement = {
 };
 global.listMaterial.push({
   'id': material, //id
-  'name': global.lang[global.displayLanguage][material],
   'type': 'metal', //类型
   'color': 0x66ccff, //颜色
   'rarity': 0, //稀有度
@@ -195,6 +193,8 @@ global.listMaterial.push({
     'surfaceslate': {
       //表层矿石
       'build': true, //是否有原型以及是否构建,不构建为false,无原型或不使用原型为true,有原型为物品id
+      'name': false, //是否指定名称
+      'tooltip': false, //是否指定描述
       'blockstate': {
         'light': 0, //光照等级,0~15
         'hardness': 3, //硬度,浮点
@@ -361,10 +361,6 @@ global.listMaterial.push({
   },
   'plate': {
     //板
-    'build': true,
-  },
-  'sheet': {
-    //钣金
     'build': true,
   },
   'sheet': {

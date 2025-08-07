@@ -4,8 +4,8 @@
 global.namespace = 'phantasm';
 //设置首选语言
 global.displayLanguage = 'zh_cn';
-//初始化语言文件
-global.lang = {};
+//初始化语言列表
+let Languagetable = {};
 //初始化材料列表
 global.listRarity = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC'];
 //初始化材料列表

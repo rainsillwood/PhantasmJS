@@ -1,53 +1,72 @@
 // priority: 1000
 
-let part;
+let type = 'ingot';
 let rarity = 0;
 for (let material of global.listMaterial) {
-  part = 'ingot';
-  if (material[part].build === true) {
-    let itemSetting = {
-      'id': `minecraft:${material.id}_${part}`,
-      'type': 'basic',
-      'displayName': `${global.lang[global.displayLanguage][part].replace('${material}', global.lang[global.displayLanguage][material.id])}`,
-    };
-    switch (material.type) {
-      case 'metal': {
-        part = 'ingot';
-        break;
-      }
-      case 'alloy': {
-        part = 'ingot';
-        break;
-      }
-      case 'gem': {
-        part = 'gem';
-        break;
-      }
+  let part = 'ingot';
+  //基本设定
+  let optionItem = {
+    'id': `minecraft:${material.id}_${part}`,
+    'type': 'basic',
+    'name': `${global.listLanguage.part[part].replace('${material}', global.listLanguage.material[material.id])}`,
+    'rarity': global.listRarity[Math.max(material.rarity + rarity, 3)],
+  };
+  //针对设定
+  switch (material.type) {
+    case 'metal': {
+      break;
     }
-    //宝石特例无后缀
-    if (part == 'gem') itemSetting.id = `${global.namespace}:${material.id}`;
-    itemSetting.rarity = global.RarityList[Math.max(material.rarity + rarity, 3)];
-    if (material.enchanted === true) itemSetting.glow = true;
-    if (material.usage.fuel > 0) itemSetting.burnTime = material.usage.fuel;
-    global.listItem.push(itemSetting);
-    //初始化tag
-    let itemTags = [
-      `c:${part}s/${material.id}`, //基础tag
-      `c:${part}s`, //基础tag
-    ];
-    //信标tag
-    if (material.usage.bacon === true) itemTags.push('minecraft:beacon_payment_items');
-    //锻造材料tag
-    if (material.usage.trim === true) itemTags.push('minecraft:trim_materials');
-    //其他模组金属相关tag
-    //if (material.type == 'metal' || material.type == 'alloy') itemTags.push('minecolonies:blacksmith_product', 'ae2:metal_ingots'); //殖民地:铁匠产物;ae2:金属锭
-    for (let tag of itemTags) {
-      if (!global.listTagItem[tag]) global.listTagItem[tag] = [];
-      global.listTagItem[tag].push(itemSetting.id);
+    case 'alloy': {
+      break;
     }
-    //初始化itemGroup
-    if (!global.listCreativeTab['minecraft:ingredients']) global.listCreativeTab['minecraft:ingredients'] = [];
-    global.listCreativeTab['minecraft:ingredients'].push({ 'item': itemSetting.id, 'before': 'minecraft:stick' });
-    global.listCreativeTabRemove.push(itemSetting.id);
+    case 'brick': {
+      break;
+    }
+    case 'gem': {
+      optionItem.id = `minecraft:${material.id}`;
+      part = 'gem';
+      break;
+    }
+    default: {
+      break;
+    }
   }
+  //名称设定
+  if (material[type].name) optionItem.name = global.listLanguage.item[material[type].displayName];
+  //Tooltip设定
+  if (material[type].tooltip) optionItem.tooltip = material[type].tooltip;
+  //附魔光效设定
+  if (material.enchanted === true) optionItem.glow = true;
+  //燃料设定
+  if (material.usage.fuel > 0) optionItem.burnTime = material.usage.fuel;
+  /*推入任务队列*/
+  if (material[type].build === false) {
+    continue;
+  } else if (material[type].build === true) {
+    optionItem.modify = 'build';
+  } else {
+    optionItem.modify = 'modify';
+  }
+  global.listItem.push(optionItem);
+  /*tag相关*/
+  //初始化tag
+  let itemTags = [
+    `c:${part}s/${material.id}`, //基础tag
+    `c:${part}s`, //基础tag
+  ];
+  //信标tag
+  if (material.usage.bacon === true) itemTags.push('minecraft:beacon_payment_items');
+  //锻造材料tag
+  if (material.usage.trim === true) itemTags.push('minecraft:trim_materials');
+  //其他模组金属相关tag
+  //if (material.type == 'metal' || material.type == 'alloy') itemTags.push('minecolonies:blacksmith_product', 'ae2:metal_ingots'); //殖民地:铁匠产物;ae2:金属锭
+  for (let tag of itemTags) {
+    if (!global.listTagItem[tag]) global.listTagItem[tag] = [];
+    global.listTagItem[tag].push(optionItem.id);
+  }
+  /*creativetab相关*/
+  //初始化itemGroup
+  if (!global.listCreativeTab['minecraft:ingredients']) global.listCreativeTab['minecraft:ingredients'] = [];
+  global.listCreativeTab['minecraft:ingredients'].push({ 'item': optionItem.id, 'before': 'minecraft:stick' });
+  global.listCreativeTabRemove.push(optionItem.id);
 }
