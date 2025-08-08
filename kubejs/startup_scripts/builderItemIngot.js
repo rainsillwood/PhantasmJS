@@ -69,4 +69,7 @@ for (let material of global.listMaterial) {
   if (!global.listCreativeTab['minecraft:ingredients']) global.listCreativeTab['minecraft:ingredients'] = [];
   global.listCreativeTab['minecraft:ingredients'].push({ 'item': optionItem.id, 'before': 'minecraft:stick' });
   global.listCreativeTabRemove.push(optionItem.id);
+  global.listCreativeTabAdd.push({ 'tab': '', 'id': optionItem.id });
+  /*tooltip相关*/
+  if (material[type].tooltop) global.listTooltip[optionItem.id] = material[type].tooltop;
 }

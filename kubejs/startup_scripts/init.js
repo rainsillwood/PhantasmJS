@@ -22,11 +22,14 @@ global.listPotion = [];
 global.listEnchant = [];
 //初始化效果注册队列
 global.listEffect = [];
-//初始化标签注册队列
+//初始化创造模式物品栏
+global.listCreativeTab = {};
+global.listCreativeTabRemove = [];
+global.listCreativeTabAdd = [];
+//初始化标签处理队列
 global.listTagItem = {};
 global.listTagBlock = {};
 global.listTagFluid = {};
 global.listTagEntity = {};
-//初始化创造模式物品栏
-global.listCreativeTab = {};
-global.listCreativeTabRemove = [];
+//初始化Tooltip处理队列
+global.listTooltip = {};

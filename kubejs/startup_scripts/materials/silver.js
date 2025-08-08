@@ -10,7 +10,7 @@ let Config = {
       'targets': [
         {
           'state': {
-            'Name': 'minecraft:iron_ore',
+            'Name': `minecraft:${material}_ore`,
           },
           'target': {
             'predicate_type': 'minecraft:tag_match',
@@ -19,7 +19,7 @@ let Config = {
         },
         {
           'state': {
-            'Name': 'minecraft:deepslate_iron_ore',
+            'Name': `minecraft:deepslate_${material}_ore`,
           },
           'target': {
             'predicate_type': 'minecraft:tag_match',
@@ -37,7 +37,7 @@ let Config = {
       'targets': [
         {
           'state': {
-            'Name': 'phantasm:' + material + '_ore', //
+            'Name': `minecraft:${material}_ore`, //
           },
           'target': {
             'predicate_type': 'minecraft:tag_match',
@@ -46,7 +46,7 @@ let Config = {
         },
         {
           'state': {
-            'Name': 'phantasm:deepslate_' + material + '_ore', //
+            'Name': `minecraft:deepslate_${material}_ore`, //
           },
           'target': {
             'predicate_type': 'minecraft:tag_match',
