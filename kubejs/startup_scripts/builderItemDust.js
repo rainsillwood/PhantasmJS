@@ -1,41 +1,17 @@
-// priority: 9999
+// priority: 9997
 
-let type = 'ingot';
+let part = 'dust';
 let creativeTab = 'parts';
 let rarity = 0;
 for (let material of global.listMaterial) {
-  let optionPart = material[type];
+  let optionPart = material[part];
   //基本设定
-  let part = 'ingot';
   let optionItem = {
     'type': 'basic',
     'rarity': material.rarity + rarity,
   };
+  optionItem.id = `minecraft:${part}_${material.id}`;
   //针对设定
-  switch (material.type) {
-    case 'metal': {
-      break;
-    }
-    case 'alloy': {
-      break;
-    }
-    case 'brick': {
-      part = 'brick';
-    }
-    case 'ball': {
-      part = 'ball';
-      break;
-    }
-    case 'gem': {
-      optionItem.id = `minecraft:${material.id}`;
-      part = 'gem';
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-  if (!optionItem.id) optionItem.id = `minecraft:${material.id}_${part}`;
   //名称设定
   if (optionPart.displayName) {
     optionItem.displayName = global.listLanguage.item[optionPart.displayName];
@@ -63,10 +39,6 @@ for (let material of global.listMaterial) {
     `c:${part}s/${material.id}`, //基础tag
     `c:${part}s`, //基础tag
   ];
-  //信标tag
-  if (material.usage.bacon === true) itemTags.push('minecraft:beacon_payment_items');
-  //锻造材料tag
-  if (material.usage.trim === true) itemTags.push('minecraft:trim_materials');
   //其他模组金属相关tag
   //if (material.type == 'metal' || material.type == 'alloy') itemTags.push('minecolonies:blacksmith_product', 'ae2:metal_ingots'); //殖民地:铁匠产物;ae2:金属锭
   for (let tag of itemTags) {

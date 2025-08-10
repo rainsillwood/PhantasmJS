@@ -9,7 +9,7 @@
 	#List of blocks that are not allowed to connect to backpacks - e.g. "refinedstorage:external_storage"
 	noConnectionBlocks = []
 	#Maximum number of upgrades of type per backpack in format of "UpgradeRegistryName[or UpgradeGroup]|MaxNumber"
-	maxUpgradesPerStorage = ["stack_upgrades|3", "furnace_upgrades|1", "jukebox_upgrades|1"]
+	maxUpgradesPerStorage = ["furnace_upgrades|1", "stack_upgrades|3", "jukebox_upgrades|1"]
 	#Turns on/off item fluid handler of backpack in its item form. There are some dupe bugs caused by default fluid handling implementation that manifest when backpack is drained / filled in its item form in another mod's tank and the only way to prevent them is disallowing drain/fill in item form altogether
 	itemFluidHandlerEnabled = true
 	#Determines whether player can right click on backpack that another player is wearing to open it. If off will turn off that capability for everyone and remove related settings from backpack.
@@ -81,11 +81,11 @@
 		#Number of inventory slots in the backpack
 		# Default: 120
 		# Range: 1 ~ 144
-		inventorySlotCount = 120
+		inventorySlotCount = 144
 		#Number of upgrade slots in the backpack
 		# Default: 7
 		# Range: 0 ~ 10
-		upgradeSlotCount = 7
+		upgradeSlotCount = 10
 
 	#Compacting Upgrade Settings
 	[server.compactingUpgrade]
@@ -307,44 +307,44 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Smoking Upgrade Settings
 	[server.smokingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Blasting Upgrade Settings
 	[server.blastingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Auto-Smelting Upgrade Settings
 	[server.autoSmeltingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 		#Number of input filter slots
 		# Default: 8
 		# Range: 1 ~ 20
@@ -367,11 +367,11 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 		#Number of input filter slots
 		# Default: 8
 		# Range: 1 ~ 20
@@ -394,11 +394,11 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 		#Number of input filter slots
 		# Default: 8
 		# Range: 1 ~ 20
@@ -439,11 +439,11 @@
 		#Capacity in mB the tank upgrade will have per row of storage slots
 		# Default: 4000
 		# Range: 500 ~ 20000
-		capacityPerSlotRow = 4000
+		capacityPerSlotRow = 20000
 		#Ratio that gets applied (multiplies) to inventory stack multiplier before this is applied to max energy of the battery and max in/out. Value lower than 1 makes stack multiplier affect the max energy less, higher makes it affect the max energy more. 0 turns off stack multiplier affecting battery upgrade
 		# Default: 1.0
 		# Range: 0.0 ~ 5.0
-		stackMultiplierRatio = 1.0
+		stackMultiplierRatio = 5.0
 		#Cooldown between fill/drain actions done on fluid containers in tank slots. Only fills/drains one bucket worth to/from container after this cooldown and then waits again.
 		# Default: 20
 		# Range: 1 ~ 100
@@ -455,7 +455,7 @@
 		#Energy in FE the battery upgrade will have per row of storage slots
 		# Default: 10000
 		# Range: 500 ~ 50000
-		energyPerSlotRow = 10000
+		energyPerSlotRow = 50000
 
 	#Pump Upgrade Settings
 	[server.pumpUpgrade]

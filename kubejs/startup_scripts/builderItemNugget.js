@@ -1,12 +1,12 @@
-// priority: 9999
+// priority: 9998
 
-let type = 'ingot';
+let type = 'nugget';
 let creativeTab = 'parts';
 let rarity = 0;
 for (let material of global.listMaterial) {
   let optionPart = material[type];
   //基本设定
-  let part = 'ingot';
+  let part = 'nugget';
   let optionItem = {
     'type': 'basic',
     'rarity': material.rarity + rarity,
@@ -19,23 +19,23 @@ for (let material of global.listMaterial) {
     case 'alloy': {
       break;
     }
-    case 'brick': {
-      part = 'brick';
-    }
-    case 'ball': {
-      part = 'ball';
+    case 'gem': {
+      part = 'shard';
       break;
     }
-    case 'gem': {
-      optionItem.id = `minecraft:${material.id}`;
-      part = 'gem';
+    case 'ball': {
+      part = 'droplet';
+      break;
+    }
+    case 'brick': {
+      part = 'tile';
       break;
     }
     default: {
       break;
     }
   }
-  if (!optionItem.id) optionItem.id = `minecraft:${material.id}_${part}`;
+  optionItem.id = `minecraft:${material.id}_${part}`;
   //名称设定
   if (optionPart.displayName) {
     optionItem.displayName = global.listLanguage.item[optionPart.displayName];

@@ -1,21 +1,23 @@
 // priority: 10
 
-let listCreativeTab = [
+const listCreativeTab = [
   {
-    'id': 'part',
+    'id': 'parts',
     'icon': 'minecraft:iron_ingot',
   },
   {
-    'id': 'intermediate',
+    'id': 'intermediates',
     'icon': 'minecraft:raw_iron',
   },
 ];
 StartupEvents.registry('creative_mode_tab', (event) => {
   for (let optionTab of listCreativeTab) {
     let tabId = optionTab.id;
-    let tab = event.create(`minecraft:${tabId}s`);
-    tab.icon(() => optionTab.icon);
+    let icon = optionTab.icon;
+    let tab = event.create(`minecraft:${tabId}`);
+    tab.icon(() => icon);
     tab.displayName = global.listLanguage.creativeTab[tabId];
+    tab.content(() => global.listCreativeTabAdd[tabId]);
   }
 });
 /*
@@ -27,11 +29,7 @@ StartupEvents.modifyCreativeTab('minecraft:functional_blocks', (event) => {
 });
 */
 StartupEvents.modifyCreativeTab('minecraft:ingredients', (event) => {
-  let listRemove = [
-    'minecraft:raw_iron',
-    'minecraft:raw_copper',
-    'minecraft:raw_gold', //
-  ];
+  let listRemove = [];
   for (let item of listRemove) {
     event.remove(item);
   }
@@ -42,10 +40,11 @@ StartupEvents.modifyCreativeTab('kubejs:tab', (event) => {
     event.remove(item);
   }
 });
-//插入
-for (let CreativeTab in global.listCreativeTab) {
+/*插入
+for (let CreativeTab in global.listCreativeTabAdd) {
   StartupEvents.modifyCreativeTab(CreativeTab, (event) => {
-    let listItem = global.listCreativeTab[CreativeTab];
+    let listItem = global.listCreativeTabAdd[CreativeTab];
+    console.log(listItem);
     for (let setItem of listItem) {
       if (setItem.before) {
         event.addBefore(setItem.before, setItem.item); //before 不起作用?
@@ -55,3 +54,4 @@ for (let CreativeTab in global.listCreativeTab) {
     }
   });
 }
+*/

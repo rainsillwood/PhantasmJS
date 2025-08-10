@@ -73,11 +73,11 @@
 		#Number of inventory slots in the storage
 		# Default: 132
 		# Range: 1 ~ 180
-		inventorySlotCount = 132
+		inventorySlotCount = 180
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Limited Barrel I Settings
 	[server.LimitedBarrelI]
@@ -139,11 +139,11 @@
 		#Multiplier that's used to calculate base slot limit
 		# Default: 160
 		# Range: 1 ~ 8192
-		baseSlotLimitMultiplier = 160
+		baseSlotLimitMultiplier = 8192
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Limited Barrel II Settings
 	[server.LimitedBarrelII]
@@ -205,11 +205,11 @@
 		#Multiplier that's used to calculate base slot limit
 		# Default: 80
 		# Range: 1 ~ 8192
-		baseSlotLimitMultiplier = 80
+		baseSlotLimitMultiplier = 4096
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Limited Barrel III Settings
 	[server.LimitedBarrelIII]
@@ -271,11 +271,11 @@
 		#Multiplier that's used to calculate base slot limit
 		# Default: 50
 		# Range: 1 ~ 8192
-		baseSlotLimitMultiplier = 50
+		baseSlotLimitMultiplier = 2560
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Limited Barrel IV Settings
 	[server.LimitedBarrelIV]
@@ -337,11 +337,11 @@
 		#Multiplier that's used to calculate base slot limit
 		# Default: 40
 		# Range: 1 ~ 8192
-		baseSlotLimitMultiplier = 40
+		baseSlotLimitMultiplier = 2048
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Wood Chest Settings
 	[server.WoodChest]
@@ -403,11 +403,11 @@
 		#Number of inventory slots in the storage
 		# Default: 132
 		# Range: 1 ~ 180
-		inventorySlotCount = 132
+		inventorySlotCount = 180
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	#Shulker Box Settings
 	[server.ShulkerBox]
@@ -469,11 +469,11 @@
 		#Number of inventory slots in the storage
 		# Default: 132
 		# Range: 1 ~ 180
-		inventorySlotCount = 132
+		inventorySlotCount = 180
 		#Number of upgrade slots in the storage
 		# Default: 5
 		# Range: 0 ~ 10
-		upgradeSlotCount = 5
+		upgradeSlotCount = 10
 
 	[server.shulkerBoxDisallowedItems]
 		#List of items that are not allowed to be put in shulkerboxes - e.g. "minecraft:bundle"
@@ -635,40 +635,40 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Smoking Upgrade Settings
 	[server.smokingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Blasting Upgrade Settings
 	[server.blastingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		fuelEfficiencyMultiplier = 1.0
+		fuelEfficiencyMultiplier = 0.25
 
 	#Auto-Smelting Upgrade Settings
 	[server.autoSmeltingUpgrade]
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
@@ -695,7 +695,7 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
@@ -722,7 +722,7 @@
 		#Smelting speed multiplier (1.0 equals speed at which vanilla furnace smelts items)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0
-		smeltingSpeedMultiplier = 1.0
+		smeltingSpeedMultiplier = 4.0
 		#Fuel efficiency multiplier (1.0 equals speed at which it's used in vanilla furnace)
 		# Default: 1.0
 		# Range: 0.25 ~ 4.0

@@ -4,8 +4,8 @@ let languageId = 'zh_cn';
 Languagetable[languageId] = {
   'modName': '幻象',
   'creativeTab': {
-    'part': '原材料',
-    'intermediate': '中间产物',
+    'parts': '原材料',
+    'intermediates': '中间产物',
   },
   'item': {},
   'material': {
@@ -105,7 +105,16 @@ Languagetable[languageId] = {
   },
   'part': {
     'ingot': '${material}锭',
+    'nugget': '${material}粒',
     'gem': '${material}',
+    'shard': '${material}碎片',
+    'brick': '${material}砖',
+    'tile': '${material}瓦片',
+    'ball': '${material}球',
+    'droplet': '${material}滴',
+    'rod': '${material}棒',
     'dust': '${material}粉',
+    'powder': '${material}末',
+    'raw': '粗${material}',
   },
 };

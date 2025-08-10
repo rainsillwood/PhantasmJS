@@ -328,11 +328,11 @@ global.listMaterial.push({
     'build': true,
   },
   'ingot': {
-    //锭,对应宝石为gem宝石
+    //锭,对应宝石为gem,对应球为ball,对应砖为brick,
     'build': true,
   },
   'nugget': {
-    //粒,对应宝石为shard碎片
+    //粒,对应宝石为shard碎片,对应球为droplet滴,对应砖为tile瓦片,
     'build': true,
   },
   'dust': {

@@ -1,6 +1,6 @@
-// priority: 1
+// priority: 10
 
-ItemEvents.tags('tooltip', (event) => {
+ItemEvents.modifyTooltips((event) => {
   for (let item in global.listTooltip) {
     event.add(item, global.listTooltip[item]);
   }

@@ -11,7 +11,8 @@ global.listRarity = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC'];
 //初始化材料列表
 global.listMaterial = [];
 //初始化物品注册队列
-global.listItem = [];
+global.listItemBuild = [];
+global.listItemModify = [];
 //初始化方块注册队列
 global.listBlock = [];
 //初始化流体注册队列
@@ -23,9 +24,8 @@ global.listEnchant = [];
 //初始化效果注册队列
 global.listEffect = [];
 //初始化创造模式物品栏
-global.listCreativeTab = {};
+global.listCreativeTabAdd = {};
 global.listCreativeTabRemove = [];
-global.listCreativeTabAdd = [];
 //初始化标签处理队列
 global.listTagItem = {};
 global.listTagBlock = {};
