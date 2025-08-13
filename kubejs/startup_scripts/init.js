@@ -9,20 +9,23 @@ let Languagetable = {};
 //初始化材料列表
 global.listRarity = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC'];
 //初始化材料列表
+global.listToolLevel = ['wooden', 'stone', 'iron', 'diamond', 'netherite'];
+//初始化材料列表
 global.listMaterial = [];
 //初始化物品注册队列
 global.listItemBuild = [];
 global.listItemModify = [];
 //初始化方块注册队列
-global.listBlock = [];
+global.listBlockBuild = [];
+global.listBlockModify = [];
 //初始化流体注册队列
-global.listFluid = [];
+global.listFluidBuild = [];
 //初始化药水注册队列
-global.listPotion = [];
+global.listPotionBuild = [];
 //初始化附魔注册队列
-global.listEnchant = [];
+global.listEnchantBuild = [];
 //初始化效果注册队列
-global.listEffect = [];
+global.listEffectBuild = [];
 //初始化创造模式物品栏
 global.listCreativeTabAdd = {};
 global.listCreativeTabRemove = [];

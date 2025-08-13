@@ -116,5 +116,7 @@ Languagetable[languageId] = {
     'dust': '${material}粉',
     'powder': '${material}末',
     'raw': '粗${material}',
+    'block': '${material}块',
+    'rawblock': '粗${material}块',
   },
 };

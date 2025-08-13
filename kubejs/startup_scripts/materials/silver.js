@@ -261,7 +261,7 @@ global.listMaterial.push({
     'build': true,
     'count': 9,
     'blockstate': {
-      'light': 0,
+      'lightLevel': 0,
       'hardness': 5,
       'resistance': 6,
       'level': 1,
