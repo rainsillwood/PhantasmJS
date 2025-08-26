@@ -4,8 +4,8 @@ let languageId = 'zh_cn';
 Languagetable[languageId] = {
   'modName': '幻象',
   'creativeTab': {
-    'parts': '原材料',
-    'intermediates': '中间产物',
+    'parts': '材料',
+    'intermediates': '矿冶',
   },
   'item': {},
   'material': {
@@ -104,19 +104,43 @@ Languagetable[languageId] = {
     'netherbrick': '下界砖',
   },
   'part': {
+    //方块
+    'casing': '${material}机壳',
+    'small_bud': '小型${material}晶芽',
+    'medium_bud': '中型${material}晶芽',
+    'large_bud': '大型${material}晶芽',
+    'cluster': '${material}晶簇',
+    'budding_block': '${material}母岩',
+    'stone_ore': '${material}矿石',
+    'deepslate_ore': '深层${material}矿石',
+    'nether_ore': '下界${material}矿石',
+    'end_ore': '末地${material}矿石',
+    'raw_block': '粗${material}块',
+    'storage_block': '${material}块',
+    //液体
+    //物品
+    'coin': '${material}币',
     'ingot': '${material}锭',
-    'nugget': '${material}粒',
     'gem': '${material}',
-    'shard': '${material}碎片',
     'brick': '${material}砖',
-    'tile': '${material}瓦片',
     'ball': '${material}球',
+    'fragment': '${material}碎块',
+    'scrap': '${material}碎片',
+    'calcine': '${material}焙砂',
+    'crystal': '${material}晶体',
+    'clump': '${material}晶碎',
+    'nugget': '${material}粒',
+    'shard': '${material}碎片',
+    'tile': '${material}瓦片',
     'droplet': '${material}滴',
-    'rod': '${material}棒',
     'dust': '${material}粉',
     'powder': '${material}末',
+    'gear': '${material}齿轮',
+    'plate': '${material}板',
+    'sheet': '${material}钣金',
     'raw': '粗${material}',
-    'block': '${material}块',
-    'rawblock': '粗${material}块',
+    'rod': '${material}棒',
   },
 };
+
+

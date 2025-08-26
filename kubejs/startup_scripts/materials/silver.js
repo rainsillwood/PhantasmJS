@@ -151,6 +151,7 @@ let Placement = {
 global.listMaterial.push({
   'id': material, //id
   'type': 'metal', //类型
+  'subtype': '', //类型v
   'color': 0x66ccff, //颜色
   'rarity': 0, //稀有度
   'enchanted': false, //是否附魔
@@ -190,7 +191,7 @@ global.listMaterial.push({
   },
   'ore': {
     //矿石
-    'surfaceslate': {
+    'stone': {
       //表层矿石
       'build': true, //是否有原型以及是否构建,不构建为false,无原型或不使用原型为true,有原型为物品id
       'name': false, //是否指定名称
@@ -200,15 +201,19 @@ global.listMaterial.push({
         'hardness': 3, //硬度,浮点
         'resistance': 3, //爆炸抗性,浮点
         'level': 1, //挖掘等级
+        'requiresTool': true,
       },
     },
     'deepslate': {
       //深层矿石
       'build': true,
-      'light': 0,
-      'hardness': 4.5,
-      'resistance': 3,
-      'level': 1,
+      'blockstate': {
+        'light': 0,
+        'hardness': 4.5,
+        'resistance': 3,
+        'level': 1,
+        'requiresTool': true,
+      },
     },
     'drop': {
       //掉落
@@ -226,15 +231,9 @@ global.listMaterial.push({
     },
     'generator': [Placement.small, Placement.upper, Placement.middle], //生成器
   },
-  'cluster': {
+    'cluster': {
     //晶簇(包括晶芽)
     'build': true,
-    'blockstate': {
-      'light': 0,
-      'hardness': 1.5,
-      'resistance': 1.5,
-      'level': 0,
-    },
     'drop': {
       //掉落
       'formula': 'ore_drops',
@@ -254,6 +253,7 @@ global.listMaterial.push({
       'hardness': 5,
       'resistance': 6,
       'level': 1,
+      'requiresTool': true,
     },
   },
   'storage_block': {
@@ -265,6 +265,7 @@ global.listMaterial.push({
       'hardness': 5,
       'resistance': 6,
       'level': 1,
+      'requiresTool': true,
     },
   },
   'molten': {
@@ -339,7 +340,7 @@ global.listMaterial.push({
     //粉
     'build': true,
   },
-  'tiny_dust': {
+  'powder': {
     //末
     'build': true,
   },
@@ -366,5 +367,16 @@ global.listMaterial.push({
   'sheet': {
     //钣金
     'build': true,
+  },
+  'casing': {
+    // 机壳
+    'build': true,
+    'blockstate': {
+      'lightLevel': 0,
+      'hardness': 1.5,
+      'resistance': 6,
+      'level': 0,
+      'requiresTool': false,
+    },
   },
 });

@@ -6,8 +6,8 @@
     "animal_owner": true,
     "harvest_tool.effective_tool": true,
     "energy_storage.style": "PROGRESS_BAR",
-    "item_storage": true,
     "item_storage.normal_amount": 9,
+    "item_storage": true,
     "harvest_tool": true,
     "armor_stand": true,
     "fluid_storage.detailed": false,
@@ -52,18 +52,8 @@
     "painting": true,
     "chiseled_bookshelf": true
   },
-  "champions": {
-    "enable_affix_compact": true
-  },
-  "jadeaddons.create": {
-    "filter": true,
-    "backtank_capacity": true,
-    "goggles.requires_goggles": true,
-    "goggles": false,
-    "blaze_burner": true,
-    "exact_block": true,
-    "goggles.detailed": false,
-    "placard": true
+  "jadeaddons": {
+    "equipment_requirement": ""
   },
   "jade_access": {
     "held_item": true,
@@ -74,75 +64,19 @@
   },
   "jade": {
     "coordinates.rel": false,
-    "registry_name.special": false,
-    "block_states": false,
+    "registry_name.special": true,
+    "block_states": true,
     "distance": false,
     "block_face": false,
     "coordinates": false,
-    "registry_name": "OFF",
+    "registry_name": "ADVANCED_TOOLTIPS",
     "block_properties": false,
     "mod_name": true
-  },
-  "balm": {
-    "jade": true
-  },
-  "custommachinery": {
-    "machine_component_provider": true
-  },
-  "ae2": {
-    "part_icon": true,
-    "charger": true,
-    "debug": true,
-    "part_tooltip": true,
-    "grid_node_state": true,
-    "pattern_provider": true,
-    "part_mod_name": true,
-    "power_storage": true,
-    "crafting_monitor": true,
-    "part_name": true
-  },
-  "eclipticseasons": {
-    "animal": true,
-    "crop": true,
-    "snowy_status": true,
-    "crop.shift_hint": true
-  },
-  "jadeaddons": {
-    "equipment_requirement": ""
-  },
-  "easy_villagers": {
-    "villager": true,
-    "converter": true,
-    "breeder": true
-  },
-  "touhou_little_maid": {
-    "maid": true,
-    "shrine_lamp": true
-  },
-  "jadecolonies": {
-    "colony.citizens": true,
-    "colony.visitor_cost": true,
-    "colony.pack": true,
-    "colony.colonist": true,
-    "domum.materials": true
-  },
-  "supplementaries": {
-    "hat_stand": true
-  },
-  "dynamictrees": {
-    "rooty_water": true,
-    "pod": true,
-    "fruit": true,
-    "rooty": true,
-    "branch": true
   },
   "waystones": {
     "waystone": true
   },
-  "corpse": {
-    "corpse": true
-  },
-  "modular_machinery_reborn": {
-    "machine_component_provider": true
+  "balm": {
+    "jade": true
   }
 }

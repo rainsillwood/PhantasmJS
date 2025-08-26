@@ -9,7 +9,7 @@
 		# If the hotbar should display item borders.
 		hotbar = true
 		# If item borders should show for common items.
-		show_for_common = false
+		show_for_common = true
 		# If the borders should have square corners.
 		square_corners = true
 		# If the borders should fully envelop item slots (otherwise they will only show on the bottom portion of the slot).
@@ -21,7 +21,7 @@
 		# If automatic borders (based on item rarity) should be enabled.
 		auto_borders = true
 		# If enabled and Legendary Tooltips is installed, borders will sync with tooltip border colors.
-		legendary_tooltips_sync = false
+		legendary_tooltips_sync = true
 		# Custom border colors for specific items. Format: { <color> = ["list of selectors"] }.
 		# Color formats supported:
 		#   Hex color code - A hex color code is preceded by # or 0x and must be quoted.  Supports 3, 4, 6, or 8 digit codes in the formats RGB, ARGB, RRGGBB, or AARRGGBB.  Examples: "#F4C", "0xFEE0", "#40FF2E", "#CC00E2EE"

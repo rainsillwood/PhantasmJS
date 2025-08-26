@@ -1,10 +1,11 @@
-// priority: 9999
+// priority: 9998
 
 let type = 'ingot';
 let creativeTab = 'parts';
-let rarity = 0;
+let rarity = 1;
 for (let material of global.listMaterial) {
   let optionPart = material[type];
+  if (!optionPart) continue;
   //基本设定
   let part = 'ingot';
   let optionItem = {
@@ -27,7 +28,6 @@ for (let material of global.listMaterial) {
       break;
     }
     case 'gem': {
-      optionItem.id = `minecraft:${material.id}`;
       part = 'gem';
       break;
     }
@@ -35,12 +35,13 @@ for (let material of global.listMaterial) {
       break;
     }
   }
-  if (!optionItem.id) optionItem.id = `minecraft:${material.id}_${part}`;
+  let id = part == 'gem' ? material.id : `${material.id}_${part}`;
+  optionItem.id = `minecraft:${id}`;
   //名称设定
-  if (optionPart.displayName) {
-    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
-  } else {
+  if (!optionPart.displayName) {
     optionItem.displayName = global.listLanguage.part[part].replace('${material}', global.listLanguage.material[material.id]);
+  } else {
+    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
   }
   //Tooltip设定
   if (optionPart.tooltip) optionItem.tooltip = optionPart.tooltip;
@@ -57,6 +58,16 @@ for (let material of global.listMaterial) {
     optionItem.id = optionPart.build;
     global.listItemModify.push(optionItem);
   }
+  /*材质相关*/
+  global.listTexture.push({
+    'location': `minecraft:item/${id}`,
+    'layers': [
+      {
+        'path': `minecraft:parts/${part}${material.subtype}`,
+        'color': material.color,
+      },
+    ],
+  });
   /*tag相关*/
   //初始化tag
   let itemTags = [
@@ -77,7 +88,7 @@ for (let material of global.listMaterial) {
   //初始化itemGroup
   if (!global.listCreativeTabAdd[creativeTab]) global.listCreativeTabAdd[creativeTab] = [];
   global.listCreativeTabAdd[creativeTab].push(optionItem.id);
-  global.listCreativeTabRemove.push(optionItem.id);
+  if (optionPart.build === true) global.listCreativeTabRemove.push(optionItem.id);
   /*tooltip相关*/
   if (optionPart.tooltop) global.listTooltip[optionItem.id] = optionPart.tooltop;
 }

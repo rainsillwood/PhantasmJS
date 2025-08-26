@@ -1,10 +1,11 @@
-// priority: 9998
+// priority: 9997
 
 let type = 'nugget';
 let creativeTab = 'parts';
-let rarity = 0;
+let rarity = 1;
 for (let material of global.listMaterial) {
   let optionPart = material[type];
+  if (!optionPart) continue;
   //基本设定
   let part = 'nugget';
   let optionItem = {
@@ -35,19 +36,20 @@ for (let material of global.listMaterial) {
       break;
     }
   }
-  optionItem.id = `minecraft:${material.id}_${part}`;
+  let id = `${material.id}_${part}`;
+  optionItem.id = `minecraft:${id}`;
   //名称设定
-  if (optionPart.displayName) {
-    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
-  } else {
+  if (!optionPart.displayName) {
     optionItem.displayName = global.listLanguage.part[part].replace('${material}', global.listLanguage.material[material.id]);
+  } else {
+    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
   }
   //Tooltip设定
   if (optionPart.tooltip) optionItem.tooltip = optionPart.tooltip;
   //附魔光效设定
   if (material.enchanted === true) optionItem.glow = true;
   //燃料设定
-  if (material.usage.fuel > 0) optionItem.burnTime = material.usage.fuel;
+  if (material.usage.fuel > 0) optionItem.burnTime = material.usage.fuel / 8;
   /*推入任务队列*/
   if (optionPart.build === false) {
     continue;
@@ -57,16 +59,22 @@ for (let material of global.listMaterial) {
     optionItem.id = optionPart.build;
     global.listItemModify.push(optionItem);
   }
+  /*材质相关*/
+  global.listTexture.push({
+    'location': `minecraft:item/${id}`,
+    'layers': [
+      {
+        'path': `minecraft:parts/${part}`,
+        'color': material.color,
+      },
+    ],
+  });
   /*tag相关*/
   //初始化tag
   let itemTags = [
     `c:${part}s/${material.id}`, //基础tag
     `c:${part}s`, //基础tag
   ];
-  //信标tag
-  if (material.usage.bacon === true) itemTags.push('minecraft:beacon_payment_items');
-  //锻造材料tag
-  if (material.usage.trim === true) itemTags.push('minecraft:trim_materials');
   //其他模组金属相关tag
   //if (material.type == 'metal' || material.type == 'alloy') itemTags.push('minecolonies:blacksmith_product', 'ae2:metal_ingots'); //殖民地:铁匠产物;ae2:金属锭
   for (let tag of itemTags) {
@@ -77,7 +85,7 @@ for (let material of global.listMaterial) {
   //初始化itemGroup
   if (!global.listCreativeTabAdd[creativeTab]) global.listCreativeTabAdd[creativeTab] = [];
   global.listCreativeTabAdd[creativeTab].push(optionItem.id);
-  global.listCreativeTabRemove.push(optionItem.id);
+  if (optionPart.build === true) global.listCreativeTabRemove.push(optionItem.id);
   /*tooltip相关*/
   if (optionPart.tooltop) global.listTooltip[optionItem.id] = optionPart.tooltop;
 }

@@ -1,29 +1,29 @@
-// priority: 9997
+// priority: 9996
 
 let part = 'raw';
 let creativeTab = 'intermediates';
 let rarity = 0;
 for (let material of global.listMaterial) {
-  let optionPart = material[type];
+  let optionPart = material[part];
+  if (!optionPart) continue;
   //基本设定
+  let id = `${part}_${material.id}`;
   let optionItem = {
     'type': 'basic',
     'rarity': material.rarity + rarity,
+    'id': `minecraft:${id}`,
   };
-  optionItem.id = `minecraft:raw_${material.id}`;
   //针对设定
   //名称设定
-  if (optionPart.displayName) {
-    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
-  } else {
+  if (!optionPart.displayName) {
     optionItem.displayName = global.listLanguage.part[part].replace('${material}', global.listLanguage.material[material.id]);
+  } else {
+    optionItem.displayName = global.listLanguage.item[optionPart.displayName];
   }
   //Tooltip设定
   if (optionPart.tooltip) optionItem.tooltip = optionPart.tooltip;
   //附魔光效设定
   if (material.enchanted === true) optionItem.glow = true;
-  //燃料设定
-  if (material.usage.fuel > 0) optionItem.burnTime = material.usage.fuel;
   /*推入任务队列*/
   if (optionPart.build === false) {
     continue;
@@ -33,6 +33,16 @@ for (let material of global.listMaterial) {
     optionItem.id = optionPart.build;
     global.listItemModify.push(optionItem);
   }
+  /*材质相关*/
+  global.listTexture.push({
+    'location': `minecraft:item/${id}`,
+    'layers': [
+      {
+        'path': `minecraft:parts/${part}`,
+        'color': material.color,
+      },
+    ],
+  });
   /*tag相关*/
   //初始化tag
   let itemTags = [
@@ -49,7 +59,7 @@ for (let material of global.listMaterial) {
   //初始化itemGroup
   if (!global.listCreativeTabAdd[creativeTab]) global.listCreativeTabAdd[creativeTab] = [];
   global.listCreativeTabAdd[creativeTab].push(optionItem.id);
-  global.listCreativeTabRemove.push(optionItem.id);
+  if (optionPart.build === true) global.listCreativeTabRemove.push(optionItem.id);
   /*tooltip相关*/
   if (optionPart.tooltop) global.listTooltip[optionItem.id] = optionPart.tooltop;
 }
