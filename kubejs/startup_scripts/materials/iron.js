@@ -156,7 +156,7 @@ global.listMaterial.push({
   'rarity': 0, //稀有度
   'enchanted': false, //是否附魔
   'process': {
-    'type': 'acid',
+    'type': 'acid', //处理流程:acid酸洗
     'product': [
       //产物
       {
@@ -175,7 +175,7 @@ global.listMaterial.push({
   },
   'usage': {
     'value': 0, //货币价值
-    'fuel': 0, //燃烧时间,基准为锭
+    'fuel': 0, //燃烧时间,基准为粒
     'bacon': true, //是否用于信标
     'trim': true, //是否用于锻造
     'tool': {
@@ -194,10 +194,12 @@ global.listMaterial.push({
     'stone': {
       //表层矿石
       'build': 'minecraft:iron_ore', //是否有原型以及是否构建,不构建为false,无原型或不使用原型为true,有原型为物品id
+      'property': false, //是否修改属性,false则不修改,true则为默认,有特殊设定为object
     },
     'deepslate': {
       //深层矿石
       'build': 'minecraft:deepslate_iron_ore',
+      'property': false,
     },
     'drop': {
       //掉落
@@ -231,12 +233,12 @@ global.listMaterial.push({
   'raw_block': {
     //粗矿块
     'build': 'minecraft:raw_iron_block',
-    'count': 9,
+    'count': 8,
   },
   'storage_block': {
     //块
     'build': 'minecraft:iron_block',
-    'count': 9,
+    'count': 8,
   },
   'molten': {
     //熔融流体
@@ -262,49 +264,27 @@ global.listMaterial.push({
     //粗矿
     'build': 'minecraft:raw_iron',
   },
-  'fragment': {
-    //碎块
-    'build': true,
-  },
-  'scrap': {
-    //碎片
-    'build': true,
-  },
-  'calcine': {
-    //焙砂
-    'build': true,
-  },
-  'slurry': {
-    //浆液
-    'build': true,
-  },
-  'solution': {
-    //溶液
-    'build': true,
-  },
-  'extraction': {
-    //萃取液
-    'build': true,
-  },
-  'stripping': {
-    //反萃液
-    'build': true,
-  },
-  'crystal': {
-    //晶体
-    'build': true,
-  },
-  'clump': {
-    //碎晶
+  'intermediates': {
+    //碎块fragment
+    //碎片scrap
+    //焙砂calcine
+    //浆液slurry
+    //溶液solution
+    //萃取液extraction
+    //反萃液stripping
+    //晶体crystal
+    //碎晶clump
     'build': true,
   },
   'ingot': {
     //锭,对应宝石为gem,对应球为ball,对应砖为brick,
-    'build': 'minecraft:iron_ingot',
+    'build': true,
+    'id': 'minecraft:iron_ingot',
   },
   'nugget': {
     //粒,对应宝石为shard碎片,对应球为droplet滴,对应砖为tile瓦片,
-    'build': 'minecraft:iron_nugget',
+    'build': true,
+    'id': 'minecraft:iron_nugget',
   },
   'dust': {
     //粉

@@ -1,41 +1,36 @@
 // priority: 20
 
-const _Item_Properties = Java.loadClass('net.minecraft.world.item.Item$Properties');
-const _BlockItem = Java.loadClass('net.minecraft.world.item.BlockItem');
 //注册新物品
 StartupEvents.registry('item', (event) => {
-  global.listItemBuild.forEach((optionItem) => {
-    let builderItem;
-    if (optionItem.type == 'custom') {
+  global.listItemBuild.forEach((option) => {
+    let builder;
+    let resourceLocation = `${option.namespace}:${option.id}`;
+    if (option.type == 'custom') {
       let item;
-      let propertyItem = optionItem.specialItem;
-      switch (propertyItem.type) {
+      let property = option.specialItem;
+      switch (property.type) {
         case 'blockItem': {
-          item = new _BlockItem(propertyItem.block.get(), new _Item_Properties());
+          item = new $BlockItem(property.block.get(), new $Item_Properties());
           break;
         }
         default: {
           break;
         }
       }
-      /*let provider = Utils.lazy(() => item);
-      builderItem = event['createCustom(dev.latvian.mods.kubejs.util.KubeResourceLocation,java.util.function.Supplier)'](optionItem.id, provider);
-      */
-      builderItem = event.createCustom(optionItem.id, () => item);
+      builder = event.createCustom(resourceLocation, () => item);
     } else {
-      if (optionItem.type == 'basic') {
-        builderItem = event.create(optionItem.id);
+      if (option.type == 'basic') {
+        builder = event.create(resourceLocation);
       } else {
-        builderItem = event.create(optionItem.id, optionItem.type);
+        builder = event.create(resourceLocation, option.type);
       }
-      if (optionItem.maxStackSize > 0) builderItem.maxStackSize(optionItem.maxStackSize); //设置物品的最大堆叠
-      if (optionItem.maxDamage > 0) builderItem.maxDamage(optionItem.maxDamage); //设置物品的最大耐久
-      if (optionItem.burnTime > 0) builderItem.burnTime(optionItem.burnTime); //设置物品的可燃烧tick
-      if (optionItem.fireResistant === true) builderItem.fireResistant(optionItem.fireResistant); //设置物品是否防火
-      builderItem.rarity(global.listRarity[Math.min(optionItem.rarity, 3)]); //设置稀有度
-      if (optionItem.glow === true) builderItem.glow(true); //设置是否光效
+      if (option.maxStackSize > 0) builder.maxStackSize(option.maxStackSize); //设置物品的最大堆叠
+      if (option.maxDamage > 0) builder.maxDamage(option.maxDamage); //设置物品的最大耐久
+      if (option.burnTime > 0) builder.burnTime(option.burnTime); //设置物品的可燃烧tick
+      if (option.fireResistant === true) builder.fireResistant(option.fireResistant); //设置物品是否防火
+      builder.rarity(global.listRarity[Math.min(option.rarity, 3)]); //设置稀有度
+      if (option.glow === true) builder.glow(true); //设置是否光效
       //color
-      global.listLanguageTable.push({ 'type': 'item', 'id': optionItem.id, 'displayName': optionItem.displayName });
       //textureJson
       //modelJson
       //parentModel
@@ -60,15 +55,15 @@ StartupEvents.registry('item', (event) => {
 });
 //修改原有物品
 ItemEvents.modification((event) => {
-  global.listItemModify.forEach((optionItem) => {
-    global.listLanguageTable.push({ 'type': 'item', 'id': optionItem.id, 'displayName': optionItem.displayName });
-    event.modify(optionItem.id, (builderItem) => {
-      if (optionItem.maxDamage > 0) builderItem.setMaxDamage(optionItem.maxDamage); //设置物品的最大耐久
-      if (optionItem.maxStackSize > 0) builderItem.setMaxStackSize(optionItem.maxStackSize); //设置物品的最大堆叠
+  global.listItemModify.forEach((option) => {
+    let resourceLocation = `${option.namespace}:${option.id}`;
+    event.modify(resourceLocation, (builder) => {
+      if (option.maxDamage > 0) builder.setMaxDamage(option.maxDamage); //设置物品的最大耐久
+      if (option.maxStackSize > 0) builder.setMaxStackSize(option.maxStackSize); //设置物品的最大堆叠
       //craftingRemainder:item//合成遗留物
-      if (optionItem.fireResistant === true) builderItem.setFireResistant(optionItem.fireResistant); //设置物品是否防火
-      builderItem.setRarity(global.listRarity[Math.min(optionItem.rarity, global.listRarity.length - 1)]); //设置稀有度
-      if (optionItem.burnTime > 0) builderItem.setBurnTime(optionItem.burnTime); //设置物品的可燃烧tick
+      if (option.fireResistant === true) builder.setFireResistant(option.fireResistant); //设置物品是否防火
+      builder.setRarity(global.listRarity[Math.min(option.rarity, global.listRarity.length - 1)]); //设置稀有度
+      if (option.burnTime > 0) builder.setBurnTime(option.burnTime); //设置物品的可燃烧tick
       //foodProperties
       //digSpeed
       //tier

@@ -1,9 +1,9 @@
 // priority: 1
 
 ClientEvents.generateAssets('last', (event) => {
-  global.listBlockState.forEach((optionBlockState) => {
-    let model = optionBlockState.id.replace(':', ':block/');
-    let resourceLocation = optionBlockState.id.replace(':', ':blockstates/');
+  global.listBlockState.forEach((option) => {
+    let model = `${option.namespace}:block/${option.id}`;
+    let resourceLocation = `${option.namespace}:blockstates/${option.id}`;
     let listBlockState = {
       'simple': {
         'variants': {
@@ -43,6 +43,6 @@ ClientEvents.generateAssets('last', (event) => {
         },
       },
     };
-    event.json(resourceLocation, listBlockState[optionBlockState.state] || optionBlockState.state);
+    event.json(resourceLocation, listBlockState[option.state] || option.state);
   });
 });

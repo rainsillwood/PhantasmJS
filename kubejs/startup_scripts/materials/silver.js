@@ -231,7 +231,7 @@ global.listMaterial.push({
     },
     'generator': [Placement.small, Placement.upper, Placement.middle], //生成器
   },
-    'cluster': {
+  'cluster': {
     //晶簇(包括晶芽)
     'build': true,
     'drop': {
@@ -292,40 +292,16 @@ global.listMaterial.push({
     //粗矿
     'build': true,
   },
-  'fragment': {
-    //碎块
-    'build': true,
-  },
-  'scrap': {
-    //碎片
-    'build': true,
-  },
-  'calcine': {
-    //焙砂
-    'build': true,
-  },
-  'slurry': {
-    //浆液
-    'build': true,
-  },
-  'solution': {
-    //溶液
-    'build': true,
-  },
-  'extraction': {
-    //萃取液
-    'build': true,
-  },
-  'stripping': {
-    //反萃液
-    'build': true,
-  },
-  'crystal': {
-    //晶体
-    'build': true,
-  },
-  'clump': {
-    //碎晶
+  'intermediates': {
+    //碎块fragment
+    //碎片scrap
+    //焙砂calcine
+    //浆液slurry
+    //溶液solution
+    //萃取液extraction
+    //反萃液stripping
+    //晶体crystal
+    //碎晶clump
     'build': true,
   },
   'ingot': {

@@ -1,121 +1,89 @@
 // priority: 40
 
-const _BlockBehaviour_Properties = Java.loadClass('net.minecraft.world.level.block.state.BlockBehaviour$Properties');
-const _AmethystClusterBlock = Java.loadClass('net.minecraft.world.level.block.AmethystClusterBlock');
-const _Fluids = Java.loadClass('net.minecraft.world.level.material.Fluids');
-
 //注册新物品
 StartupEvents.registry('block', (event) => {
-  global.listBlockBuild.forEach((optionBlock) => {
-    let builderBlock;
-    if (optionBlock.type == 'custom') {
+  global.listBlockBuild.forEach((option) => {
+    let builder;
+    let resourceLocation = `${option.namespace}:${option.id}`;
+    if (option.type == 'custom') {
       let block;
-      let propertyBlock = optionBlock.specialBlock;
+      let propertyBlock = option.specialBlock;
       switch (propertyBlock.type) {
         case 'cluster': {
-          block = builderBlockCluster(optionBlock);
+          block = builderBlockCluster(option);
           break;
         }
         case 'budding': {
-          block = builderBlockBudding(optionBlock);
+          block = builderBlockBudding(option);
         }
         default: {
           break;
         }
       }
-      /*let provider = Utils.lazy(() => block);
-      builderBlock = event['createCustom(dev.latvian.mods.kubejs.util.KubeResourceLocation,java.util.function.Supplier)'](optionBlock.id, provider);
-      */
-      builderBlock = event.createCustom(optionBlock.id, () => block);
+      builder = event.createCustom(resourceLocation, () => block);
       global.listItemBuild.push({
         'type': 'custom',
-        'id': optionBlock.id,
+        'namespace': option.namespace,
+        'id': option.id,
         'specialItem': {
           'type': 'blockItem',
-          'block': builderBlock,
+          'block': builder,
         },
       });
       global.listBlockModify.push({
-        'id': optionBlock.id,
-        'lightLevel': optionBlock.lightLevel,
+        'namespace': option.namespace,
+        'id': option.id,
+        'lightLevel': option.lightLevel,
       });
-      global.listModel.push(
-        optionBlock.model || {
-          'id': optionBlock.id,
-          'type': 'block',
-          'model': {
-            'parent': 'minecraft:block/cube_all',
-            'textures': {
-              'all': optionBlock.id.replace(':', ':block/'),
-            },
-          },
-          'render_type': 'solid',
-        }
-      );
-      global.listModel.push(
-        optionBlock.modelItem || {
-          'id': optionBlock.id,
-          'type': 'item',
-          'model': {
-            'parent': optionBlock.id.replace(':', ':block/'),
-          },
-        }
-      );
-      global.listBlockState.push(
-        optionBlock.blockstate || {
-          'id': optionBlock.id,
-          'state': 'simple',
-        }
-      );
     } else {
-      if (optionBlock.type == 'basic') {
-        builderBlock = event.create(optionBlock.id);
+      if (option.type == 'basic') {
+        builder = event.create(resourceLocation);
       } else {
-        builderBlock = event.create(optionBlock.id, optionBlock.type);
+        builder = event.create(resourceLocation, option.type);
       }
-      if (optionBlock.renderType) builderBlock.renderType(optionBlock.renderType);
-      if (optionBlock.fullBlock) {
-        builderBlock.fullBlock(false);
+      if (option.renderType) builder.renderType(option.renderType);
+      if (option.fullBlock) {
+        builder.fullBlock(false);
       }
-      if (optionBlock.placeFacing) {
-        builderBlock.property(BlockProperties.FACING);
-        builderBlock.placementState((context) => {
+      if (option.placeFacing) {
+        builder.property(BlockProperties.FACING);
+        builder.placementState((context) => {
           context.set(BlockProperties.FACING, context.getClickedFace());
         });
         global.listBlockState.push({
-          'id': optionBlock.id,
+          'namespace': option.namespace,
+          'id': option.id,
           'type': 'facing',
         });
       }
-      if (optionBlock.waterlogged) builderBlock.waterlogged();
-      if (optionBlock.parentModel) {
-        builderBlock.parentModel(optionBlock.parentModel);
+      if (option.waterlogged) builder.waterlogged();
+      if (option.parentModel) {
+        builder.parentModel(option.parentModel);
       }
-      if (optionBlock.hardness) builderBlock.hardness(optionBlock.hardness);
-      if (optionBlock.resistance) builderBlock.resistance(optionBlock.resistance);
-      if (optionBlock.lightLevel) builderBlock.lightLevel(optionBlock.lightLevel);
-      if (optionBlock.requiresTool) builderBlock.requiresTool(optionBlock.requiresTool);
-      if (optionBlock.texture) {
-        for (let i in optionBlock.texture) {
-          builderBlock.texture(i, optionBlock.texture[i]);
+      if (option.hardness) builder.hardness(option.hardness);
+      if (option.resistance) builder.resistance(option.resistance);
+      if (option.lightLevel) builder.lightLevel(option.lightLevel);
+      if (option.requiresTool) builder.requiresTool(option.requiresTool);
+      if (option.texture) {
+        for (let i in option.texture) {
+          builder.texture(i, option.texture[i]);
         }
       }
-      if (optionBlock.randomTick) {
-        switch (optionBlock.randomTick.type) {
+      if (option.randomTick) {
+        switch (option.randomTick.type) {
           case 'budding': {
-            builderBlock.randomTick((event) => {
+            builder.randomTick((event) => {
               const block = event.block;
               const level = event.level;
-              const Direction = Java.loadClass('net.minecraft.core.Direction');
-              const material = optionBlock.randomTick.material;
+              const material = option.randomTick.material;
               const listBlock = [
-                `minecraft:small_${material}_bud`, //
-                `minecraft:medium_${material}_bud`,
-                `minecraft:large_${material}_bud`,
-                `minecraft:${material}_cluster`,
+                `${option.namespace}:small_${material}_bud`, //
+                `${option.namespace}:medium_${material}_bud`,
+                `${option.namespace}:large_${material}_bud`,
+                `${option.namespace}:${material}_cluster`,
               ];
               if (Math.random() < 0.2) {
-                let direction = Direction.values()[Math.floor(Math.random() * 6)];
+                let direction = Direction.VALUES[Math.floor(Math.random() * 6)];
                 let targetpos = block.getPos().relative(direction);
                 let targetstate = level.getBlockState(targetpos);
                 let targetblock = targetstate.getBlock();
@@ -160,26 +128,17 @@ StartupEvents.registry('block', (event) => {
       //builderBlock.fallenOn
       //builderBlock.opaque(optionBlock.opaque);
     }
-    global.listLanguageTable.push({
-      'type': 'block',
-      'id': optionBlock.id,
-      'displayName': optionBlock.displayName,
-    });
   });
 });
 //修改原有物品
 BlockEvents.modification((event) => {
-  global.listBlockModify.forEach((optionBlock) => {
-    global.listLanguageTable.push({
-      'type': 'block',
-      'id': optionBlock.id,
-      'displayName': optionBlock.displayName,
-    });
-    event.modify(optionBlock.id, (builderBlock) => {
-      if (optionBlock.hardness) builderBlock.setDestroySpeed(optionBlock.hardness); //destroySpeed
-      if (optionBlock.resistance) builderBlock.setExplosionResistance(optionBlock.resistance);
-      if (optionBlock.lightLevel) builderBlock.setLightEmission(optionBlock.lightLevel); //lightEmission
-      if (optionBlock.requiresTool) builderBlock.setRequiresTool(optionBlock.requiresTool); //requiredTool
+  global.listBlockModify.forEach((option) => {
+    let resourceLocation = `${option.namespace}:${option.id}`;
+    event.modify(resourceLocation, (builder) => {
+      if (option.hardness) builder.setDestroySpeed(option.hardness); //destroySpeed
+      if (option.resistance) builder.setExplosionResistance(option.resistance);
+      if (option.lightLevel) builder.setLightEmission(option.lightLevel); //lightEmission
+      if (option.requiresTool) builder.setRequiresTool(option.requiresTool); //requiredTool
       //builderBlock.setFriction;
       //builderBlock.setJumpFactor;
       //builderBlock.setSpeedFactor;
@@ -212,18 +171,17 @@ function builderBlockCluster(optionBlock) {
       break;
     }
   }
-  return new _AmethystClusterBlock(
+  return new $AmethystClusterBlock(
     height,
     offset,
-    _BlockBehaviour_Properties //
+    $BlockBehaviour$Properties //
       .of()
       .sound(sound)
       .randomTicks()
       .forceSolidOn()
       .noCollission()
-      .pushReaction(_PushReaction.DESTROY)
+      .pushReaction($PushReaction.DESTROY)
       .explosionResistance(resistance)
       .destroyTime(hardness)
   );
 }
-function randomTickBudding(tick, material) {}

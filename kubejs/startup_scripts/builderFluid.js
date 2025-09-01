@@ -2,33 +2,35 @@
 
 //注册新物品
 StartupEvents.registry('fluid', (event) => {
-  for (let optionFluid of global.listFluidBuild) {
-    let builderFluid;
-    if (optionFluid.texture) {
-      builderFluid = event.create(optionFluid.id);
-      builderFluid.stillTexture(optionFluid.texture[0]);
-      builderFluid.flowingTexture(optionFluid.texture[1]);
+  global.listFluidBuild.forEach((option) => {
+    let builder;
+    let resourceLocation = `${option.namespace}:${option.id}`;
+    if (option.textures) {
+      builder = event.create(resourceLocation);
+      builder.stillTexture(option.texture.still);
+      builder.flowingTexture(option.texture.flowing);
     } else {
-      builderFluid = event.create(optionFluid.id, optionFluid.type);
+      builder = event.create(resourceLocation, option.type);
+      builder.tint(option.color);
     }
-    builderFluid.displayName(optionFluid.displayName);
-    builderFluid.tint(optionFluid.color);
-    if (optionFluid.resistance) builderFluid.explosionResistance(optionFluid.resistance);
-    //builderFluid.renderType
+    if (option.resistance) builder.explosionResistance(option.resistance);
+    builder.fluidType.lightLevel(option.luminosity || 0);
+    builder.fluidType.temperature(option.temperature || 300);
+    builder.fluidType.viscosity(option.viscosity || 1000);
+    builder.fluidType.density(option.density || 1000);
     //builderFluid.slopeFindDistance
     //builderFluid.levelDecreasePerBlock
     //builderFluid.tickRate
     //builderFluid.translucent()
-    
-    //builderFluid.luminosity(optionFluid.luminosity);
-    //builderFluid.density(optionFluid.density);
-    //builderFluid.temperature(optionFluid.temperature);
-    //builderFluid.viscosity(optionFluid.viscosity);
-  }
+  });
 });
-/*/修改原有物品
-Fluid.modification((event) => {
-  for (let optionFluid of global.listFluidModify) {
-
-  }
-});*/
+//修改原有物品
+global.listFluidModify.forEach((optionFluid) => {
+  let resourceLocation = `${option.namespace}:${option.id}`;
+  let builder = Fluid.getType(resourceLocation);
+  //if (optionFluid.luminosity) builderFluid.getFluidType().lightLevel = optionFluid.luminosity;
+  //if (optionFluid.temperature) builderFluid.fluidType.temperature = optionFluid.temperature;
+  //if (optionFluid.viscosity) builderFluid.fluidType.viscosity = optionFluid.viscosity;
+  //if (optionFluid.density) builderFluid.fluidType.density = optionFluid.density;
+  //if (optionFluid.resistance)
+});

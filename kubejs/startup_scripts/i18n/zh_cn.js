@@ -118,6 +118,13 @@ Languagetable[languageId] = {
     'raw_block': '粗${material}块',
     'storage_block': '${material}块',
     //液体
+    'slurry': '${material}矿浆液',
+    'solution': '${material}矿溶液',
+    'extraction': '${material}矿精粹',
+    'stripping': '${material}矿纯液',
+    'molten': '熔融${material}', //固体用
+    'vapor': '${material}蒸气', //固体用、液体用
+    'liquid': '液${material}', //气体用
     //物品
     'coin': '${material}币',
     'ingot': '${material}锭',
@@ -140,7 +147,7 @@ Languagetable[languageId] = {
     'sheet': '${material}钣金',
     'raw': '粗${material}',
     'rod': '${material}棒',
+    'solid': '固态${material}', //气体用、液体用
+    'bucket': '${fluid}桶',
   },
 };
-
-

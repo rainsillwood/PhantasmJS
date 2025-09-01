@@ -1,12 +1,7 @@
 // priority: 1
 
 ClientEvents.generateAssets('last', (event) => {
-  // global.listTexture is a global list of all textures which need to convert,
-  // every entry has template(resource location of template png file)
-  // location(resource location of item or block png file)
-  // color:setting color
-  for (let i = 0; i < global.listTexture.length; i++) {
-    let option = global.listTexture[i];
+  global.listTexture.forEach((option) => {
     let targetTexture = undefined;
     for (let j = 0; j < option.layers.length; j++) {
       let layer = option.layers[j];
@@ -34,7 +29,7 @@ ClientEvents.generateAssets('last', (event) => {
       }
     }
     event.texture(option.location, targetTexture);
-  }
+  });
 });
 function rgb2hsv(arrayRGB) {
   //转换rgb为向量

@@ -1,7 +1,13 @@
 // priority: 2147483647
 
-const _Blocks = Java.loadClass('net.minecraft.world.level.block.Blocks');
-const _PushReaction = Java.loadClass('net.minecraft.world.level.material.PushReaction');
+const $Context = Java.loadClass('dev.latvian.mods.rhino.Context');
+const $PushReaction = Java.loadClass('net.minecraft.world.level.material.PushReaction');
+const $BlockBehaviour$Properties = Java.loadClass('net.minecraft.world.level.block.state.BlockBehaviour$Properties');
+const $AmethystClusterBlock = Java.loadClass('net.minecraft.world.level.block.AmethystClusterBlock');
+const $Item_Properties = Java.loadClass('net.minecraft.world.item.Item$Properties');
+const $BlockItem = Java.loadClass('net.minecraft.world.item.BlockItem');
+const $Rarity = Java.loadClass('net.minecraft.world.item.Rarity');
+const $ChatFormatting = Java.loadClass('net.minecraft.ChatFormatting');
 //设定命名空间
 global.namespace = 'phantasm';
 //设置首选语言
@@ -11,6 +17,9 @@ let Languagetable = {};
 global.listLanguageTable = [];
 //初始化材料列表
 global.listRarity = ['POOR', 'COMMON', 'SUPERIOR', 'EXQUISITE', 'BRILLIANT', 'EPICALLY', 'LEGEND', 'MYTHIC', 'PEERLESS'];
+//$Rarity.UNCOMMON.name
+//$Rarity.RARE;
+//$Rarity.EPIC.styleModifier = $ChatFormatting.GOLD;
 //初始化材料列表
 global.listToolLevel = [
   [
@@ -70,6 +79,26 @@ global.listBlockBuild = [];
 global.listBlockModify = [];
 //初始化流体注册队列
 global.listFluidBuild = [];
+global.listFluidModify = [
+  {
+    'id': 'minecraft:water',
+    'temperature': 300,
+    'viscosity': 1000,
+    'density': 1000,
+  },
+  {
+    'id': 'minecraft:milk',
+    'temperature': 300,
+    'viscosity': 1000,
+    'density': 1000,
+  },
+  {
+    'id': 'minecraft:lava',
+    'temperature': 300,
+    'viscosity': 1000,
+    'density': 1000,
+  },
+];
 //初始化药水注册队列
 global.listPotionBuild = [];
 //初始化附魔注册队列
@@ -77,7 +106,10 @@ global.listEnchantBuild = [];
 //初始化效果注册队列
 global.listEffectBuild = [];
 //初始化创造模式物品栏
-global.listCreativeTabAdd = {};
+global.listCreativeTabAdd = {
+  'parts': [],
+  'intermediates': [],
+};
 global.listCreativeTabRemove = [];
 //初始化标签处理队列
 global.listTagItem = {};
